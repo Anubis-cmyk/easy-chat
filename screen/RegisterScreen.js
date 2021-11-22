@@ -4,6 +4,7 @@ import { useLayoutEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, View } from 'react-native'
 import { Button, Input, Text } from 'react-native-elements'
 import { auth } from '../firebase'
+import firebase from '../firebase'
 
 
 const RegisterScreen = ({ navigation }) => {
