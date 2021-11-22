@@ -3,8 +3,9 @@ import React from 'react'
 import { useLayoutEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, View } from 'react-native'
 import { Button, Input, Text } from 'react-native-elements'
-import { auth } from '../firebase'
-import firebase from '../firebase'
+import { auth,app } from '../firebase' 
+import { getDatabase, ref, set,child } from "firebase/database";
+import Firebase from 'firebase';
 
 
 const RegisterScreen = ({ navigation }) => {
@@ -13,7 +14,7 @@ const RegisterScreen = ({ navigation }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [imageUrl, setImageUrl] = useState("")
-
+    const [user,setUser] = useState({});
     useLayoutEffect(() => {
         navigation.setOptions({
             headerBackTitle: "Login",
@@ -21,7 +22,11 @@ const RegisterScreen = ({ navigation }) => {
     }, [navigation])
 
     const register = () => {
-
+        const newUser = {
+            "email": email,
+            "password" :password,
+        };
+        setUser(newUser);
         auth
             .createUserWithEmailAndPassword(email, password)
             .then(authUser => {
@@ -31,9 +36,18 @@ const RegisterScreen = ({ navigation }) => {
                         "https://www.pinclipart.com/picdir/big/78-780477_about-us-avatar-icon-red-png-clipart.png",
 
                 })
+                writeUserData();
             })
             .catch(error => alert(error.message))
     }
+
+    const  writeUserData = () => { 
+        let authUser = Firebase.auth;
+        let path = '/'; 
+        Firebase.database().ref(path).child.set(user);
+        console.log('DATA SAVED');
+         
+        }
 
     return (
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
