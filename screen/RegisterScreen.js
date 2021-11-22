@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { useLayoutEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, View } from 'react-native'
-import { Button, Input, Text } from 'react-native-elements'
+import { KeyboardAvoidingView, StyleSheet, View ,TouchableOpacity} from 'react-native'
+import { Button, Input, Text,Image } from 'react-native-elements'
 import { auth,app } from '../firebase' 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import Firebase from 'firebase';
 import {  ToastProvider, useToasts } from 'react-toast-notifications';
  
+import loginImage from'./images/login-image.png'
  
 const RegisterScreen = ({ navigation }) => {
 
@@ -73,12 +74,18 @@ const RegisterScreen = ({ navigation }) => {
        
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <StatusBar style="light" />
-         
+          <Text style={styles.LoginTitle}>Easy Chat</Text>
+
+      
             
        
             <Text h4 style={{ marginBottom: 50 }}>
                 Create a EasyChat account
             </Text>
+              <Image source={  loginImage 
+                 
+            } 
+                style={{ width: 200, height: 200 }} />
             <View style={styles.inputContainer}> 
                 <Input
                     placeholder="Full Name"
@@ -121,6 +128,9 @@ const RegisterScreen = ({ navigation }) => {
                 type="clear"
                 titleStyle={{ color: "#fff" }}
             />
+            <TouchableOpacity  onPress={() => navigation.navigate("Login")}>
+            <Text  style={styles.LoginLink}>Already have an account ? Sign In</Text>
+            </TouchableOpacity>
 
             <View style={{ height: 100 }} /> 
         </KeyboardAvoidingView>
@@ -130,7 +140,7 @@ const RegisterScreen = ({ navigation }) => {
 export default RegisterScreen
 
 const styles = StyleSheet.create({
-    container: {
+  container: {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
@@ -141,13 +151,32 @@ const styles = StyleSheet.create({
         width: 300,
     },
     button: {
-        width: 200,
+        width: 300,
         marginTop: 10,
-        backgroundColor: "#43E68D",
+        backgroundColor: "#E76565",
         borderRadius: 5,
 
-
+    },
+    LoginTitle:{
+        alignText:'center',
+        height: 66,
+        fontSize:46,
+        fontWeight:'400',
+        left:55,
+        color: '#227721',
+        bottom:10,
 
     },
+
+    LoginLink:{
+        fontSize:18,
+        lineHeight:22,
+        width:280,
+        color:'#333FA7',
+        left:10,
+        top:20,
+        marginTop:15,
+    }
+
 
 })

@@ -20,7 +20,7 @@ const LoginScreen = ({ navigation }) => {
                 navigation.replace('Home');
             }
         })
-            
+
         return unsubscribe;
     }, [])
 
@@ -35,9 +35,8 @@ const LoginScreen = ({ navigation }) => {
             <StatusBar style='light' />
             <Text style={styles.LoginTitle}>Easy Chat</Text>
 
-            <img src={ 
-                 loginImage
-            } 
+            <Image source={ loginImage}
+              
                 style={{ width: 200, height: 200 }} />
             <View style={styles.inputContainer}>
                  
