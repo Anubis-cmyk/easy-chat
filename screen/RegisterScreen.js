@@ -4,7 +4,7 @@ import { useLayoutEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, View } from 'react-native'
 import { Button, Input, Text } from 'react-native-elements'
 import { auth,app } from '../firebase' 
-import { getDatabase, ref, set,child } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import Firebase from 'firebase';
 
 
@@ -12,9 +12,10 @@ const RegisterScreen = ({ navigation }) => {
 
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
+    const [number, setNumber] = useState("")
     const [password, setPassword] = useState("")
     const [imageUrl, setImageUrl] = useState("")
-    const [user,setUser] = useState({});
+    const [userName,seUserName] = useState("");
     useLayoutEffect(() => {
         navigation.setOptions({
             headerBackTitle: "Login",
@@ -22,11 +23,7 @@ const RegisterScreen = ({ navigation }) => {
     }, [navigation])
 
     const register = () => {
-        const newUser = {
-            "email": email,
-            "password" :password,
-        };
-        setUser(newUser);
+       
         auth
             .createUserWithEmailAndPassword(email, password)
             .then(authUser => {
@@ -42,10 +39,23 @@ const RegisterScreen = ({ navigation }) => {
     }
 
     const  writeUserData = () => { 
-        let authUser = Firebase.auth;
-        let path = '/'; 
-        Firebase.database().ref(path).child.set(user);
-        console.log('DATA SAVED');
+        
+        var curUser = Firebase.auth().currentUser;
+
+         const newUser = {
+            "userName":userName,
+            "profilePic":imageUrl,
+            "name":name,
+            "phoneNumber":number,
+            "email": email,
+            "password" :password,
+            "uid":curUser.uid,
+         }; 
+
+        let path = 'user/' + curUser.uid; 
+        Firebase.database().ref('/').child(path).set(newUser);
+        console.log('DATA SAVED' + curUser.uid);
+        console.log("newUser : " + newUser); 
          
         }
 
