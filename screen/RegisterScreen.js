@@ -6,16 +6,21 @@ import { Button, Input, Text } from 'react-native-elements'
 import { auth,app } from '../firebase' 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import Firebase from 'firebase';
-
-
+import {  ToastProvider, useToasts } from 'react-toast-notifications';
+ 
+ 
 const RegisterScreen = ({ navigation }) => {
 
+    const [error,setError] =useState("")
+    const [errorType,setErrorType] =useState("")
+    const [showError,setShowError] =useState(false)
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [number, setNumber] = useState("")
     const [password, setPassword] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [userName,seUserName] = useState("");
+    const { addToast } = useToasts();  
     useLayoutEffect(() => {
         navigation.setOptions({
             headerBackTitle: "Login",
@@ -23,7 +28,9 @@ const RegisterScreen = ({ navigation }) => {
     }, [navigation])
 
     const register = () => {
-       
+      if( email =="" && password  ==""  && name  ==""  ) {
+           addToast("fill the information",{ appearance: "info",autoDismiss: true,placement :"top-right"})
+      }else{
         auth
             .createUserWithEmailAndPassword(email, password)
             .then(authUser => {
@@ -35,7 +42,10 @@ const RegisterScreen = ({ navigation }) => {
                 })
                 writeUserData();
             })
-            .catch(error => alert(error.message))
+            .catch(error => { 
+                addToast(error.message,{placement :'bottom-left', appearance: "error",autoDismiss: true})
+            }) 
+        }
     }
 
     const  writeUserData = () => { 
@@ -56,18 +66,20 @@ const RegisterScreen = ({ navigation }) => {
         Firebase.database().ref('/').child(path).set(newUser);
         console.log('DATA SAVED' + curUser.uid);
         console.log("newUser : " + newUser); 
-         
+         addToast("Successfully registered",{ appearance: "success",autoDismiss: true}) 
         }
 
     return (
+       
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <StatusBar style="light" />
-
+         
+            
+       
             <Text h4 style={{ marginBottom: 50 }}>
                 Create a EasyChat account
             </Text>
-            <View style={styles.inputContainer}>
-
+            <View style={styles.inputContainer}> 
                 <Input
                     placeholder="Full Name"
                     autoFocus
@@ -90,7 +102,8 @@ const RegisterScreen = ({ navigation }) => {
                     value={password}
                     onChangeText={(text) => setPassword(text)}
                 />
-
+                
+               
                 <Input
                     placeholder="Profile Picture URL (Optional)"
                     type='text'
@@ -109,8 +122,7 @@ const RegisterScreen = ({ navigation }) => {
                 titleStyle={{ color: "#fff" }}
             />
 
-            <View style={{ height: 100 }} />
-
+            <View style={{ height: 100 }} /> 
         </KeyboardAvoidingView>
     )
 }

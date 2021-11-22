@@ -8,7 +8,7 @@ import RegisterScreen from './screen/RegisterScreen';
 import HomeScreen from './screen/HomeScreen';
 import AddChatScreen from './screen/AddChatScreen';
 import ChatScreen from './screen/ChatScreen';
-
+import { ToastProvider } from 'react-toast-notifications'
 
 const Stack = createStackNavigator();
 
@@ -24,7 +24,7 @@ const globalScreenOptions = {
 export default function App() {
   return (
     <NavigationContainer> 
-     
+     <ToastProvider placement ='bottom-center' >
       <Stack.Navigator 
       // initialRouteName="Home"
       screenOptions={globalScreenOptions}
@@ -35,7 +35,7 @@ export default function App() {
        <Stack.Screen name='AddChat' component={AddChatScreen}/>
        <Stack.Screen name='Chat' component={ChatScreen}/>
       </Stack.Navigator>
-     
+     </ToastProvider>
     </NavigationContainer>
   
   );
