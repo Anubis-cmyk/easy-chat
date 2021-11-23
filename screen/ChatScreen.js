@@ -172,7 +172,7 @@ const ChatScreen = ({ navigation, route }) => {
 
             <View style={styles.footer}>
               <View style={styles.buttonrow}>
-                <TouchableOpacity  style={styles.icon} activeOpacity={0.5}  onPress={() => navigation.navigate("Login")}>
+                <TouchableOpacity  style={styles.icon} activeOpacity={0.5}  onPress={() => navigation.navigate("Camera")}>
                 <Ionicons name="recording" size={23} color="#be0c57" />
               </TouchableOpacity>
                <TouchableOpacity style={styles.icon} activeOpacity={0.5}>
