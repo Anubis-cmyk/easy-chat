@@ -20,8 +20,7 @@ const RegisterScreen = ({ navigation }) => {
     const [number, setNumber] = useState("")
     const [password, setPassword] = useState("")
     const [imageUrl, setImageUrl] = useState("")
-    const [userName,seUserName] = useState("");
-    const { addToast } = useToasts();  
+    const [userName,seUserName] = useState(""); 
     useLayoutEffect(() => {
         navigation.setOptions({
             headerBackTitle: "Login",
@@ -44,7 +43,7 @@ const RegisterScreen = ({ navigation }) => {
                 writeUserData();
             })
             .catch(error => { 
-                addToast(error.message,{placement :'bottom-left', appearance: "error",autoDismiss: true})
+               console.log(error.message)
             }) 
         }
     }
@@ -67,7 +66,7 @@ const RegisterScreen = ({ navigation }) => {
         Firebase.database().ref('/').child(path).set(newUser);
         console.log('DATA SAVED' + curUser.uid);
         console.log("newUser : " + newUser); 
-         addToast("Successfully registered",{ appearance: "success",autoDismiss: true}) 
+           
         }
 
     return (

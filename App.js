@@ -23,8 +23,7 @@ const globalScreenOptions = {
 
 export default function App() {
   return (
-    <NavigationContainer> 
-     <ToastProvider placement ='bottom-center' >
+    <NavigationContainer>  
       <Stack.Navigator 
       // initialRouteName="Home"
       screenOptions={globalScreenOptions}
@@ -34,8 +33,7 @@ export default function App() {
        <Stack.Screen name='Home' component={HomeScreen}/>
        <Stack.Screen name='AddChat' component={AddChatScreen}/>
        <Stack.Screen name='Chat' component={ChatScreen}/>
-      </Stack.Navigator>
-     </ToastProvider>
+      </Stack.Navigator> 
     </NavigationContainer>
   
   );

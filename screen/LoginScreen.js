@@ -4,15 +4,13 @@ import { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, View,TextInput ,TouchableOpacity} from 'react-native'
 import { Button, Input, Image } from 'react-native-elements'
 import { auth } from '../firebase'
-import loginImage from'./images/login-image.png'
-import {  ToastProvider, useToasts } from 'react-toast-notifications';
+import loginImage from'./images/login-image.png' 
 
 const LoginScreen = ({ navigation }) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
-    const { addToast } = useToasts();  
+ 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
             console.log(authUser);
@@ -27,7 +25,7 @@ const LoginScreen = ({ navigation }) => {
     const signIn = () => {
 
         auth.signInWithEmailAndPassword(email, password)
-        .catch((error) =>  addToast(error.message,{  appearance: "error",autoDismiss: true}));
+        .catch((error) =>  console.log(error.message));
      };
 
     return (
