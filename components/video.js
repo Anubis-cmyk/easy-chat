@@ -30,6 +30,19 @@ export default function App() {
   const onCameraReady = () => {
     setIsCameraReady(true);
   };
+   useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestMicrophonePermissionsAsync();
+      setHasPermission(status === "granted");
+    })();
+  }, []);
+    useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === "granted");
+    })();
+  }, []);
+  
 
   const takePicture = async () => {
     if (cameraRef.current) {
