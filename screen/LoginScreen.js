@@ -66,7 +66,7 @@ const LoginScreen = ({ navigation }) => {
                 titleStyle={{ color: "#fff" }}
             />
 
-            <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+            <TouchableOpacity style={styles.marginTop} onPress={() => navigation.navigate("Register")}>
             <Text  style={styles.signUpLink}>Need a Account ? Sign Up</Text>
             </TouchableOpacity>
       
@@ -125,6 +125,9 @@ const styles = StyleSheet.create({
         color:'#333FA7',
         left:20,
         top:30
+    },
+    marginTop:{
+        marginTop:15,
     }
 
 })
