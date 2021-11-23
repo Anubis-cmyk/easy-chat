@@ -171,6 +171,21 @@ const ChatScreen = ({ navigation, route }) => {
             </ScrollView>
 
             <View style={styles.footer}>
+              <View style={styles.buttonrow}>
+                <TouchableOpacity  style={styles.icon} activeOpacity={0.5}>
+                <Ionicons name="chatbubble-ellipses" size={23} color="#be0c57" />
+              </TouchableOpacity>
+               <TouchableOpacity style={styles.icon} activeOpacity={0.5}>
+                <Ionicons name="hand-right" size={23} color="#be0c57" />
+              </TouchableOpacity>
+               <TouchableOpacity style={styles.icon} activeOpacity={0.5}>
+                <Ionicons name="recording" size={23} color="#be0c57" />
+              </TouchableOpacity>
+               <TouchableOpacity style={styles.icon} activeOpacity={0.5}>
+                <Ionicons name="thumbs-up" size={23} color="#be0c57" />
+              </TouchableOpacity>
+              </View>
+              <View style={styles.chatRow}>
               <TextInput
                 style={styles.textInput}
                 value={input}
@@ -182,6 +197,8 @@ const ChatScreen = ({ navigation, route }) => {
               <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
                 <Ionicons name="send" size={23} color="#43E68D" />
               </TouchableOpacity>
+              </View>
+              
             </View>
           </>
         </TouchableWithoutFeedback>
@@ -195,6 +212,26 @@ export default ChatScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  chatRow:{
+     display:'flex',
+    flexDirection:'row',
+    width:'100%',
+    alignItems:'center'
+  },
+  icon:{
+    margin:3,
+    marginLeft:10,
+    padding:1, 
+
+  },
+  buttonrow:{ 
+    display:'flex',
+    flexDirection:'row',
+    width:'100%',
+    marginBottom:5,
+    
+
   },
   reciever: {
     padding: 15,
@@ -234,7 +271,7 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     width: "100%",
     padding: 15,
