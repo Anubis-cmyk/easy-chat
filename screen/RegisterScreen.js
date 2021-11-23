@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { useLayoutEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, View ,TouchableOpacity} from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, View ,TouchableOpacity, SafeAreaView, ScrollView, StyleSheet,} from 'react-native'
 import { Button, Input, Text,Image } from 'react-native-elements'
 import { auth,app } from '../firebase' 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -73,6 +73,11 @@ const RegisterScreen = ({ navigation }) => {
        
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <StatusBar style="light" />
+
+            
+
+             <SafeAreaView>
+            <ScrollView style={styles.container}>
           <Text style={styles.LoginTitle}>Easy Chat</Text>
 
       
@@ -132,6 +137,8 @@ const RegisterScreen = ({ navigation }) => {
             </TouchableOpacity>
 
             <View style={{ height: 100 }} /> 
+              </ScrollView>
+        </SafeAreaView>
         </KeyboardAvoidingView>
     )
 }

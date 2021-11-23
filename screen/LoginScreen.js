@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, View,TextInput ,TouchableOpacity} from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, View,TextInput ,TouchableOpacity, SafeAreaView, ScrollView, StyleSheet,} from 'react-native'
 import { Button, Input, Image } from 'react-native-elements'
 import { auth } from '../firebase'
 import loginImage from'./images/login-image.png' 
@@ -31,6 +31,8 @@ const LoginScreen = ({ navigation }) => {
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <StatusBar style='light' />
+             <SafeAreaView>
+            <ScrollView style={styles.container}>
             <Text style={styles.LoginTitle}>Easy Chat</Text>
 
             <Image source={ loginImage}
@@ -71,7 +73,8 @@ const LoginScreen = ({ navigation }) => {
 
 
             <View style={{ height: 50 }} />
-
+             </ScrollView>
+        </SafeAreaView>
         </KeyboardAvoidingView>)
 }
 
