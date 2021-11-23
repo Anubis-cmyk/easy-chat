@@ -172,14 +172,14 @@ const ChatScreen = ({ navigation, route }) => {
 
             <View style={styles.footer}>
               <View style={styles.buttonrow}>
-                <TouchableOpacity  style={styles.icon} activeOpacity={0.5}>
-                <Ionicons name="chatbubble-ellipses" size={23} color="#be0c57" />
+                <TouchableOpacity  style={styles.icon} activeOpacity={0.5}  onPress={() => navigation.navigate("Login")}>
+                <Ionicons name="recording-ellipses" size={23} color="#be0c57" />
               </TouchableOpacity>
                <TouchableOpacity style={styles.icon} activeOpacity={0.5}>
                 <Ionicons name="hand-right" size={23} color="#be0c57" />
               </TouchableOpacity>
                <TouchableOpacity style={styles.icon} activeOpacity={0.5}>
-                <Ionicons name="recording" size={23} color="#be0c57" />
+                <Ionicons name="mic" size={23} color="#be0c57" />
               </TouchableOpacity>
                <TouchableOpacity style={styles.icon} activeOpacity={0.5}>
                 <Ionicons name="thumbs-up" size={23} color="#be0c57" />
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   },
   icon:{
     margin:3,
-    marginLeft:10,
+    marginLeft:20,
     padding:1, 
 
   },

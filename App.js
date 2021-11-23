@@ -8,6 +8,7 @@ import RegisterScreen from './screen/RegisterScreen';
 import HomeScreen from './screen/HomeScreen';
 import AddChatScreen from './screen/AddChatScreen';
 import ChatScreen from './screen/ChatScreen';
+import Camera from'./components/video';
 import { ToastProvider } from 'react-toast-notifications'
 
 const Stack = createStackNavigator();
@@ -33,6 +34,7 @@ export default function App() {
        <Stack.Screen name='Home' component={HomeScreen}/>
        <Stack.Screen name='AddChat' component={AddChatScreen}/>
        <Stack.Screen name='Chat' component={ChatScreen}/>
+       <Stack.Screen name='Camera' component={Camera}/>
       </Stack.Navigator> 
     </NavigationContainer>
   
