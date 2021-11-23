@@ -141,8 +141,7 @@ export default RegisterScreen
 const styles = StyleSheet.create({
   container: {
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: "center", 
         padding: 10,
         backgroundColor: "white",
     },
@@ -156,8 +155,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
 
     },
-    LoginTitle:{
-        alignText:'center',
+    LoginTitle:{ 
         height: 66,
         fontSize:46,
         fontWeight:'400',

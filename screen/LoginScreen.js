@@ -89,8 +89,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: "center", 
         padding: 10,
         backgroundColor: "white",
     },
@@ -105,9 +104,9 @@ const styles = StyleSheet.create({
         borderRadius: 5,
 
     },
-    LoginTitle:{
-        alignText:'center',
-        height: 66,
+    LoginTitle:{ 
+        height: 66, 
+        alignItems: "center", 
         fontSize:46,
         fontWeight:'400',
         left:55,
