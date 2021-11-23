@@ -15,9 +15,11 @@ import {
 } from "react-native";
 import { Avatar } from "react-native-elements/dist/avatar/Avatar";
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import * as firebase from "firebase";
 import { db, auth } from "../firebase";
+
+import Firebase from 'firebase';
 
 const ChatScreen = ({ navigation, route }) => {
   const [input, setInput] = useState("");
@@ -38,9 +40,9 @@ const ChatScreen = ({ navigation, route }) => {
         >
           <Avatar
             rounded
-            source={{
-              uri: messages[0]?.data.photoURL,
-            }}
+            // source={{
+            //   uri: messages[0]?.data.photoURL,
+            // }}
           />
           <Text
             style={{
@@ -83,36 +85,75 @@ const ChatScreen = ({ navigation, route }) => {
     });
   }, [navigation, messages]);
 
-  const sendMessage = () => {
-    Keyboard.dismiss();
+   const  sendMessage = () => { 
+      Keyboard.dismiss();
+        
+        var curUser = Firebase.auth().currentUser;
 
-    db.collection("chats").doc(route.params.id).collection("messages").add({
-     // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      message: input,
-      displayName: auth.currentUser.displayName,
-      email: auth.currentUser.email,
-      photoURL: auth.currentUser.photoURL,
-    });
-    setInput("");
-  };
+         const chat = {
+              'message': input,
+              'displayName': curUser.displayName,
+              'email': curUser.email,
+              'photoURL': curUser.photoURL,
+              'uid':curUser.uid,
+         }; 
 
+        let path = 'user/' + curUser.uid +'/chat'; 
+        Firebase.database().ref('/').child(path).push().set(chat);
+        console.log('DATA SAVED' + curUser.uid); 
+        setInput("");
+        }
+
+  // const sendMessage = () => {
+  //   Keyboard.dismiss();
+
+  //   db.collection("chats").doc(route.params.id).collection("messages").add({
+  //    // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  //     message: input,
+  //     displayName: auth.currentUser.displayName,
+  //     email: auth.currentUser.email,
+  //     photoURL: auth.currentUser.photoURL,
+  //   });
+  //   setInput("");
+  // }; 
+ 
   useLayoutEffect(() => {
-    const unsubscribe = db
-      .collection('chats')
-      .doc(route.params.id)
-      .collection('messages')
-      .orderBy('timestamp', 'asc')
-      .onSnapshot((snapshot) =>
-        setMessages(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
+  //   const unsubscribe = db
+  //     .collection('chats')
+  //     .doc(route.params.id)
+  //     .collection('messages')
+  //     .orderBy('timestamp', 'asc')
+  //     .onSnapshot((snapshot) =>
+  //       setMessages(
+  //         snapshot.docs.map((doc) => ({
+  //           id: doc.id,
+  //           data: doc.data(),
+  //         }))
+  //       )
+  //     );
+  //   return unsubscribe;
+  var curUser = Firebase.auth().currentUser;
+ 
+  var starCountRef = Firebase.database().ref('user/' + curUser.uid +'/chat');
+  starCountRef.on('value', (snapshot) => {
+    var chatArr=[];
+    const data = snapshot.val();
+    for(var i in data){
+    chatArr.push([i, data [i]]);}
+
+    setMessages(
+            chatArr.map((doc) => ({
+            'id': doc[0],
+            'data': doc[1],
           }))
         )
-      );
-    return unsubscribe;
+     console.log(data);
+     console.log(chatArr);
+ 
+  
+}); 
   }, [route]);
-
+ 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <StatusBar style="light" />
@@ -125,7 +166,7 @@ const ChatScreen = ({ navigation, route }) => {
           <>
             <ScrollView contentContainerStyle={{ paddingTop: 15 }}>
               {messages.map(({ id, data }) =>
-                data.email === auth.currentUser.email ? (
+                data.email === auth.currentUser.email ? ( 
                   <View key={id} style={styles.reciever}>
                     <Avatar
                       position="absolute"
@@ -146,7 +187,7 @@ const ChatScreen = ({ navigation, route }) => {
                     <Text style={styles.recieverText}>{data.message}</Text>
                   </View>
                 ) : (
-                  <View key={id} style={styles.sender}>
+                  <View key={id} style={styles.sender}>  
                     <Avatar
                       position="absolute"
                       rounded
