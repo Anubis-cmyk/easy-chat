@@ -173,7 +173,7 @@ const ChatScreen = ({ navigation, route }) => {
             <View style={styles.footer}>
               <View style={styles.buttonrow}>
                 <TouchableOpacity  style={styles.icon} activeOpacity={0.5}  onPress={() => navigation.navigate("Login")}>
-                <Ionicons name="recording-ellipses" size={23} color="#be0c57" />
+                <Ionicons name="recording" size={23} color="#be0c57" />
               </TouchableOpacity>
                <TouchableOpacity style={styles.icon} activeOpacity={0.5}>
                 <Ionicons name="hand-right" size={23} color="#be0c57" />
@@ -197,8 +197,7 @@ const ChatScreen = ({ navigation, route }) => {
               <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
                 <Ionicons name="send" size={23} color="#43E68D" />
               </TouchableOpacity>
-              </View>
-              
+              </View> 
             </View>
           </>
         </TouchableWithoutFeedback>
