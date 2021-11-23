@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, View,TextInput ,TouchableOpacity, SafeAreaView, ScrollView, StyleSheet,} from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, View,TextInput ,TouchableOpacity, SafeAreaView, ScrollView,} from 'react-native'
 import { Button, Input, Image } from 'react-native-elements'
 import { auth } from '../firebase'
 import loginImage from'./images/login-image.png' 
@@ -109,8 +109,10 @@ const styles = StyleSheet.create({
     },
     LoginTitle:{ 
         height: 66, 
+        alignItems: "center", 
         fontSize:46,
         fontWeight:'400',
+        left:55,
         color: '#227721',
         bottom:10,
 
