@@ -77,7 +77,7 @@ const RegisterScreen = ({ navigation }) => {
             
 
              <SafeAreaView>
-            <ScrollView style={styles.container}>
+            <ScrollView >
           <Text style={styles.LoginTitle}>Easy Chat</Text>
 
       

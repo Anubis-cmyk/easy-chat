@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <StatusBar style='light' />
              <SafeAreaView>
-            <ScrollView style={styles.container}>
+            <ScrollView  >
             <Text style={styles.LoginTitle}>Easy Chat</Text>
 
             <Image source={ loginImage}
