@@ -106,10 +106,8 @@ const styles = StyleSheet.create({
     },
     LoginTitle:{ 
         height: 66, 
-        alignItems: "center", 
         fontSize:46,
         fontWeight:'400',
-        left:55,
         color: '#227721',
         bottom:10,
 

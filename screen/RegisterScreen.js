@@ -159,7 +159,6 @@ const styles = StyleSheet.create({
         height: 66,
         fontSize:46,
         fontWeight:'400',
-        left:55,
         color: '#227721',
         bottom:10,
 
