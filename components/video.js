@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   Image
 } from "react-native";
+import axios from 'axios';
 import { Camera } from "expo-camera";
 import { Video } from "expo-av";
 const WINDOW_HEIGHT = Dimensions.get("window").height;
@@ -21,6 +22,7 @@ export default function App() {
   const [isVideoRecording, setIsVideoRecording] = useState(false);
   const [videoSource, setVideoSource] = useState(null);
   const cameraRef = useRef();
+  const baseUrl = 'http://127.0.0.1:5000';
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
@@ -58,6 +60,17 @@ export default function App() {
   };
 
 
+  const fetchVideo = async (video) => {
+    const configurationObject = {
+      method: 'post',
+      url: `${baseUrl}/video2text`,
+      body:video
+    };
+    const response = await axios(configurationObject);
+    console.log(response.data);
+  };
+
+
   const uploadVideo = async (Videouri,Videotype) =>{
     const video = new FormData();
     video.append("video", {
@@ -65,14 +78,15 @@ export default function App() {
       type:Videotype,
       uri:Videouri
     });
-  try {
-    fetch('http://127.0.0.1:5000/video2text', {
-      method: "post",
-      body: video
-    });
-  } catch (e) {
-    console.error(e);
-  }
+    fetchVideo(video)
+  // try {
+  //   const data = fetch('http://127.0.0.1:5000/video2text', {
+  //     method: "post",
+  //     body: video
+  //   });
+  // } catch (e) {
+  //   console.error(e);
+  // }
 
 
   }
