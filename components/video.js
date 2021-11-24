@@ -78,6 +78,7 @@ export default function App() {
       type:Videotype,
       uri:Videouri
     });
+<<<<<<< HEAD
     fetchVideo(video)
   // try {
   //   const data = fetch('http://127.0.0.1:5000/video2text', {
@@ -87,6 +88,16 @@ export default function App() {
   // } catch (e) {
   //   console.error(e);
   // }
+=======
+  try {
+    const response = fetch('http://127.0.0.1:5000/video2text', {
+      method: "post",
+      body: video
+    });
+  } catch (e) {
+    console.error(e);
+  }
+>>>>>>> e7df6137d60561dad1c859c6f03a01ba7924eff5
 
 
   }
