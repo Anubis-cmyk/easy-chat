@@ -66,7 +66,7 @@ export default function App() {
       uri:Videouri
     });
   try {
-    fetch('http://127.0.0.1:5000/video2text', {
+    const response = fetch('http://127.0.0.1:5000/video2text', {
       method: "post",
       body: video
     });
